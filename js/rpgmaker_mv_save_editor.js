@@ -55,6 +55,7 @@ function encode_files() {
 
 // save all the loaded files
 function save_files() {
+	encode_files();
 	for (var i = 0; i < loaded_files.length; i++) {
 		var save_blob = new Blob([loaded_files[i].text], {type: "text/plain;charset=ASCII"});
 		saveAs(save_blob, loaded_files[i].file_name) 
