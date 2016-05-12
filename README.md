@@ -1,4 +1,4 @@
-# RPGMakerMVSaveEditor
+# RPG Maker MV Save Editor
 Simple Proof of concept to view, edit (with js console), and save RPG Maker MV Save Files.
 
 1. Load index.html into any decent modern browser. (Chrome tested)
