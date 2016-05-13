@@ -1,6 +1,8 @@
 # RPG Maker MV Save Editor
 Simple Proof of concept to view, edit (with js console), and save RPG Maker MV Save Files.
 
+This is for games that compress the save using LZ-String, default saves can be directly edited with a text editor. I don't have any default engine saves, but it would be easy to make something similar for them as well.
+
 1. Load index.html into any decent modern browser. (Chrome tested)
 2. Click Choose Files and select any rpgsave files
 3. Open the javascript console (in developer tools on most browsers, F12 on Chrome)
