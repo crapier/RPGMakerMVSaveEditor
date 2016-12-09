@@ -4,6 +4,9 @@ var loaded_files = [];
 // parsed objects
 var saves = [];
 
+// ace text editors
+var editors = [];
+
 // read the files selected into load_files
 function load_saves(event) {
 	// File list
@@ -24,6 +27,8 @@ function load_saves(event) {
 			f_reader.onload = function(read_event) {
 				loaded_files[this.file_index] = {text: read_event.target.result, file_name: this.file_name};
 				parse_file(this.file_index);
+				
+				create_editors();
 			};
 
 			// read as plain text
@@ -36,8 +41,55 @@ function load_saves(event) {
 function parse_file(index) {
 	saves[index] = {};
 	saves[index].file_name = loaded_files[index].file_name;
-	saves[index].save_data = LZString.decompressFromBase64(loaded_files[index].text);
-	saves[index].save_data = JSON.parse(saves[index].save_data);
+	saves[index].save_json = LZString.decompressFromBase64(loaded_files[index].text);
+	saves[index].save_data = JSON.parse(saves[index].save_json);
+	saves[index].save_json = JSON.stringify(saves[index].save_data, null, 4);
+}
+
+function create_editors() {
+	editors = [];
+	$(".editor").remove();
+	$(".editor_title").remove();
+	editors_parent = $("#editors");
+	
+	for (var i = 0; i < saves.length; i++) {
+		editors_parent.append("<div id='save" + i + "title' class='editor_title good'>" + saves[i].file_name + " Editor</div>");
+		editors_parent.append("<div id='save" + i + "editor' class='editor'></div>");
+		editors[i] = ace.edit("save" + i + "editor");
+		editors[i].setTheme("ace/theme/monokai");
+		editors[i].getSession().setMode("ace/mode/json");
+		editors[i].setValue(saves[i].save_json);
+		editors[i].getSelection().clearSelection();
+		editors[i].name = "ass";
+		
+		editors[i].on("change", update_saves);
+	}
+}
+
+function update_saves() {
+	for (var i = 0; i < saves.length; i++) {
+		var json = editors[i].getValue();
+		var good = true;
+		try {
+			JSON.parse(json);
+		}
+		catch (e) {
+			good = false;
+		}
+		if (good) {
+			saves[i].save_json = json;
+			saves[i].jave_data = JSON.parse(saves[i].save_json);
+			
+			var title = $("#save" + i + "title");
+			title.addClass("good");
+			title.removeClass("bad");
+		}
+		else {
+			var title = $("#save" + i + "title");
+			title.addClass("bad");
+			title.removeClass("good");
+		}
+	}
 }
 
 // save back all the javascript objects

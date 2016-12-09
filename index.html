@@ -13,16 +13,24 @@
 	<script src="js/jquery-2.2.3.min.js"></script>
 	<script src="js/lz-string.min.js"></script>
 	<script src="js/FileSaver.min.js"></script>
+	<script src="js/ace.js"></script>
+	<script src="js/json.js"></script>
+	<script src="js/mode-json.js"></script>
+	<script src="js/worker-json.js"></script>
+	<script src="js/theme-monokai.js"></script>
+	<script src="js/ext-searchbox.js"></script>
 
 	<script src="js/rpgmaker_mv_save_editor.js"></script>
-
+	
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 
 
 <body>
-	<input type="file" id="save_file_loader" multiple /> </br>
-	<input type="button" id="save_file_button" value="Save">
+	<input class="rpg" type="file" id="save_file_loader" multiple />
+	<div id="editors"></div>
+	<input class="rpg" type="button" id="save_file_button" value="Save">
 </body>
 
 
