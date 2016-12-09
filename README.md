@@ -20,3 +20,4 @@ Thanks to
 * [jQuery](https://jquery.com/)
 * [LZ-String](https://github.com/pieroxy/lz-string)
 * [FileSaver.js](https://github.com/eligrey/FileSaver.js/)
+* [Ace](https://ace.c9.io/)
