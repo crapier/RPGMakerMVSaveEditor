@@ -78,7 +78,7 @@ function update_saves() {
 		}
 		if (good) {
 			saves[i].save_json = json;
-			saves[i].jave_data = JSON.parse(saves[i].save_json);
+			saves[i].save_data = JSON.parse(saves[i].save_json);
 			
 			var title = $("#save" + i + "title");
 			title.addClass("good");
